@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Toko Navila</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='user/css/bootstrap.min.css') }}">
+      <!-- style css -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='user/css/style.css') }}">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="{{ url_for('static', filename='user/css/responsive.css') }}">
+      <!-- fevicon -->
+      <link rel="icon" href="{{ url_for('static', filename='user/images/fevicon.png') }}" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="{{ url_for('static', filename='user/css/jquery.mCustomScrollbar.min.css') }}">
+      <!-- owl stylesheets --> 
+      <link rel="stylesheet" href="{{ url_for('static', filename='user/css/owl.carousel.min.css') }}">
+      <link rel="stylesheet" href="{{ url_for('static', filename='user/css/owl.theme.default.min.css') }}">
+
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+   </head>
+   <!-- body -->
+   <body class="main-layout product_pagr">
+      <!-- loader 
+      <div class="loader_bg">
+         <div class="loader"><img src="{{ url_for('static', filename='user/images/loading.gif') }}" alt="#" /></div>
+      </div> -->
+      <!-- end loader -->
+      <!-- header -->
+      <header class="section">
+         <!-- header inner -->
+        <div class="header_main">
+         <div class="header_main">
+            <div class="container">
+               <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                     <div class="full">
+                        <div class="center-desk">
+                           <div class="logo"> <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='user/images/logo.png') }}" alt="#"></a> </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                     <div class="menu-area">
+                        <div class="limit-box">
+                           <nav class="main-menu">
+                              <ul class="menu-area-main">
+                                 <li> <a href="{{ url_for('index') }}">Home</a> </li>
+                                 <li><a href="{{ url_for('shop') }}">Shop</a></li>
+                                 <li><a href="{{ url_for('cart') }}">Cart</a></li>
+                                 <li class="last"><a href="#"><img src="{{ url_for('static', filename='user/images/search_icon.png') }}" alt="icon"/></a></li>
+                              </ul>
+                           </nav>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+        </div>
+         <!-- end header inner -->
+      </header>
+      <!-- end header -->
+
+       <!-- plant -->
+      <div id="plant" class="section  product">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12 ">
+                  <div class="titlepage">
+                     <h2><strong class="black"> Our</strong>  Products</h2>
+                     <span>Di Toko Navila, kami percaya bahwa setiap produk harus mencerminkan kualitas dan keindahan. Kami mengutamakan desain yang menawan, bahan berkualitas tinggi, dan inovasi dalam setiap koleksi kami. Setiap produk yang kami tawarkan dipilih dengan hati-hati untuk memastikan kepuasan pelanggan yang maksimal</span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Add this inside your clothes_main section -->
+<!-- Add this inside your clothes_main section in clients.html -->
+<div class="clothes_main section">
+   <div class="container">
+      <div class="row">
+         {% for barang in barangs %}
+         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+            <div class="sport_product">
+               <figure>
+                  <img src="{{ url_for('static', filename='images/' + barang.picture) }}" alt="{{ barang.nama }}" class="card-img-top product-image">
+               </figure>
+               <h3> Rp<strong class="price_text">{{ barang.harga }}</strong></h3>
+               <h4>{{ barang.nama }}</h4>
+               <button class="btn btn-primary mt-2" onclick="addToCart('{{ barang.id }}', '{{ barang.nama }}', '{{ barang.harga }}')">Cart</button>
+            </div>
+         </div>
+         
+         {% endfor %}
+      </div>
+   </div>
+</div>
+
+
+
+
+      
+      <!-- end plant -->
+     <!-- footer start-->
+      <div id="plant" class="footer layout_padding">
+         <div class="container">
+            <p>© 2019 All Rights Reserved. Design by<a href="https://html.design/"> Free Html Templates</a></p>
+         </div>
+      </div>
+
+      <style>
+         .product-image {
+           height: 200px;
+           object-fit: contain;
+         }
+       </style>
+
+      <!-- Javascript files-->
+      <script src="{{ url_for('static', filename='user/js/jquery.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='user/js/popper.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='user/js/bootstrap.bundle.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='user/js/jquery-3.0.0.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='user/js/plugin.js') }}"></script>
+      <!-- sidebar -->
+      <script src="{{ url_for('static', filename='user/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
+      <script src="{{ url_for('static', filename='user/js/custom.js') }}"></script>
+      <!-- javascript --> 
+      <script src="{{ url_for('static', filename='user/js/owl.carousel.js') }}"></script>
+      <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+      <script>
+         $(document).ready(function(){
+         $(".fancybox").fancybox({
+         openEffect: "none",
+         closeEffect: "none"
+         });
+         
+         $(".zoom").hover(function(){
+         
+         $(this).addClass('transition');
+         }, function(){
+         
+         $(this).removeClass('transition');
+         });
+         });
+         
+      </script> 
+
+<script>
+   function addToCart(id, nama, harga) {
+      $.ajax({
+         type: "POST",
+         url: "/add-to-cart",
+         contentType: "application/json",
+         data: JSON.stringify({ id: id, nama: nama, harga: harga }),
+         success: function(response) {
+            alert("Produk ditambahkan ke keranjang!");
+            getCartItems();
+         },
+         error: function(error) {
+            alert("Gagal menambahkan produk ke keranjang.");
+         }
+      });
+   }
+
+   function getCartItems() {
+      $.ajax({
+         type: "GET",
+         url: "/get-cart",
+         success: function(cart) {
+            displayCartItems(cart);
+         },
+         error: function(error) {
+            console.error("Error getting cart items:", error);
+         }
+      });
+   }
+
+   function displayCartItems(cart) {
+            var cartItemsContainer = $("#cart-items");
+            var totalPriceElement = $("#total-price");
+            cartItemsContainer.empty();
+
+            if (cart.length === 0) {
+                cartItemsContainer.append("<p>Your cart is empty.</p>");
+            } else {
+                cartItemsContainer.append("<ul>");
+                var totalPrice = 0;
+
+                cart.forEach(function(item) {
+                    cartItemsContainer.append("<li>" + item.nama + " - Quantity: " + item.quantity + "</li>");
+                    totalPrice += item.harga * item.quantity;
+                });
+
+                cartItemsContainer.append("</ul>");
+
+                // Display total price
+                totalHargaElement.text(totalPrice.toFixed(2));
+            }
+        }
+
+   // Load cart items on page load
+   $(document).ready(function() {
+      getCartItems();
+   });
+</script>
+
+</body>
+</html>

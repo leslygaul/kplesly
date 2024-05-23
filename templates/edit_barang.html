@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Manage Barang</h1>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Home</a></li>
+                        <li class="breadcrumb-item active">Manage Barang</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-info">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Barang</h3>
+                        </div>
+                        <form method="post" id="barangForm" action="{{ url_for('save_barang')}}" enctype="multipart/form-data">
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="nama" class="control-label">Nama Barang</label>
+                                    <input type="text" name="nama" id="nama" autocomplete="off" class="form-control" placeholder="Nama Barang" value="{{barang.nama}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="harga" class="control-label">Harga</label>
+                                    <input type="text" name="harga" id="harga" autocomplete="off" class="form-control" placeholder="Harga Barang" value="{{barang.harga}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="stok" class="control-label">Stok</label>
+                                    <input type="text" name="stok" id="stok" autocomplete="off" class="form-control" placeholder="Stok Barang" value="{{barang.stok}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="kategori" class="control-label">Kategori</label>
+                                    <input type="text" name="kategori" id="kategori" autocomplete="off" class="form-control" placeholder="Kategori Barang" value="{{barang.kategori}}" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="picture" class="control-label">Picture</label>
+                                    <input type="file" name="picture" id="picture" accept=".jpg, .png, .jpeg" class="form-control-file" />
+                                    <br>
+                                    {% if barang.picture %}
+                                        <img src="{{url_for('static', filename='images/' + barang.picture)}}" width="360" class="img-fluid" alt="Product Image" />
+                                    {% endif %}
+                                </div>
+                                <input type="hidden" name="barangid" id="barangid" value="{{barang.id}}" />
+                                <input type="hidden" name="action" id="action" value="updateBarang" />
+                                <button type="submit" name="save" id="save" class="btn btn-success">Save Barang</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+{% endblock %}
