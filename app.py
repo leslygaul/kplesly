@@ -4,7 +4,7 @@ from flask_bcrypt import Bcrypt #pip install Flask-Bcrypt = https://pypi.org/pro
 from werkzeug.utils import secure_filename
 import os
 import re
- 
+import sqlalchemy
 from models import db, Users, Barang
    
 app = Flask(__name__)
