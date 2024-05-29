@@ -54,7 +54,9 @@
                                 <td>{{barang.kategori}}</td>
                                 <td>
                                     {% if barang.picture %}
-                                        <img src="{{url_for('static', filename='images/' + barang.picture)}}" width="80" height="90">
+                                    <figure><img src="{{ url_for('image', barang_id=barang.id) }}" alt="{{ barang.nama }}"
+                                        style="height: 80px; width: 80px;" /></figure>
+                                        <!-- <img src="{{url_for('static', filename='images/' + barang.picture)}}" width="80" height="90"> -->
                                     {% else %}
                                         <img src="{{url_for('static', filename='images/default.jpg')}}" width="80" height="90">
                                     {% endif %}
