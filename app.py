@@ -25,8 +25,7 @@ with app.app_context():
     db.create_all()
  
  
-app.config['UPLOAD_FOLDER'] = 'postgresql://kplesly_owner:MOSGwn3K9ZVE@ep-lively-hat-a1dd4nff.ap-southeast-1.aws.neon.tech/kplesly?sslmode=require'
-
+app.config['UPLOAD_FOLDER'] = 'static/images'
 shopping_cart = []
     
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
