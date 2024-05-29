@@ -25,7 +25,7 @@ with app.app_context():
     db.create_all()
  
  
-app.config['UPLOAD_FOLDER'] = 'static/images'
+app.config['UPLOAD_FOLDER'] = 'static/SQLALCHEMY_DATABASE_URI'
 
 shopping_cart = []
     
