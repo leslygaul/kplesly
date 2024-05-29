@@ -25,7 +25,7 @@ with app.app_context():
     db.create_all()
  
  
-app.config['UPLOAD_FOLDER'] = 'static/SQLALCHEMY_DATABASE_URI'
+app.config['UPLOAD_FOLDER'] = 'postgresql://kplesly_owner:MOSGwn3K9ZVE@ep-lively-hat-a1dd4nff.ap-southeast-1.aws.neon.tech/kplesly?sslmode=require'
 
 shopping_cart = []
     
