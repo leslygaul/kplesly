@@ -19,41 +19,41 @@
 </head>
 
 <body class="main-layout product_page">
-     <!-- header -->
-     <header class="section fixed-top">
+    <!-- header -->
+    <header class="section fixed-top">
         <!-- header inner -->
-       <div class="header_main">
         <div class="header_main">
-           <div class="container">
-              <div class="row">
-                 <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
-                    <div class="full">
-                       <div class="center-desk">
-                        <div class="logo"> <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='user/images/logo.png') }}" alt="#"></a> </div>
+            <div class="header_main">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col logo_section">
+                            <div class="full">
+                                <div class="center-desk">
+                                    <div class="logo"> <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='user/images/logo.png') }}" alt="#"></a> </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                            <div class="menu-area">
+                                <div class="limit-box">
+                                    <nav class="main-menu">
+                                        <ul class="menu-area-main">
+                                            <li> <a href="{{ url_for('index') }}">Home</a> </li>
+                                            <li><a href="{{ url_for('shop') }}">Shop</a></li>
+                                            <li><a href="{{ url_for('cart') }}">Cart</a></li>
+                                            <li class="last"><a href="#"><img src="{{ url_for('static', filename='user/images/search_icon.png') }}" alt="icon" /></a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                 </div>
-                 <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
-                    <div class="menu-area">
-                       <div class="limit-box">
-                          <nav class="main-menu">
-                             <ul class="menu-area-main">
-                                <li> <a href="{{ url_for('index') }}">Home</a> </li>
-                                <li><a href="{{ url_for('shop') }}">Shop</a></li>
-                                <li><a href="{{ url_for('cart') }}">Cart</a></li>
-                                <li class="last"><a href="#"><img src="{{ url_for('static', filename='user/images/search_icon.png') }}" alt="icon"/></a></li>
-                            </ul>
-                          </nav>
-                       </div>
-                    </div>
-                 </div>
-              </div>
-           </div>
+                </div>
+            </div>
         </div>
-       </div>
         <!-- end header inner -->
-     </header>
-     <!-- end header -->
+    </header>
+    <!-- end header -->
 
     <!-- Shopping Cart Content -->
     <div class="container mt-5 pt-5">
@@ -87,8 +87,8 @@
     <script src="{{ url_for('static', filename='user/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='user/js/jquery-3.0.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='user/js/plugin.js') }}"></script>
-    <!-- Add any additional scripts you need -->
-    <!-- Add this inside your cart.html -->
+    <!-- Add any additional scripts -->
+
     <style>
         #cart-items td,
         #cart-items th {
@@ -111,6 +111,7 @@
             width: 100%;
         }
     </style>
+
     <script>
         // Your existing JavaScript code remains unchanged
         function addToCart(id, nama, harga) {
@@ -156,7 +157,7 @@
                     var row = "<tr>" +
                         "<td>" + item.nama + "</td>" +
                         "<td>" + item.quantity + "</td>" +
-                        "<td>$" + (item.harga * item.quantity).toFixed(2) + "</td>" +
+                        "<td> Rp." + (item.harga * item.quantity).toFixed(2) + "</td>" +
                         "</tr>";
                     cartItemsContainer.append(row);
                     totalPrice += item.harga * item.quantity;
