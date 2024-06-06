@@ -6,6 +6,7 @@ import re
 from io import BytesIO
 from models import db, Users, Barang
 
+import sqlalchemy
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'siapa-ini'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kplesly_owner:MOSGwn3K9ZVE@ep-lively-hat-a1dd4nff.ap-southeast-1.aws.neon.tech/kplesly?sslmode=require'
