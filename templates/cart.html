@@ -6,22 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shopping Cart</title>
 
-    <!-- Add your stylesheets here -->
+    <!-- Tambahkan stylesheet Anda di sini -->
     <link rel="stylesheet" href="{{ url_for('static', filename='user/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='user/css/style.css') }}">
-    <!-- Add any additional stylesheets you need -->
+    <!-- Tambahkan stylesheet tambahan yang Anda butuhkan -->
 
-    <!-- Add your JavaScript libraries here -->
+    <!-- Tambahkan library JavaScript Anda di sini -->
     <script src="{{ url_for('static', filename='user/js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='user/js/popper.min.js') }}"></script>
     <script src="{{ url_for('static', filename='user/js/bootstrap.bundle.min.js') }}"></script>
-    <!-- Add any additional scripts you need -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Tambahkan script tambahan yang Anda butuhkan -->
 </head>
 
 <body class="main-layout product_page">
     <!-- header -->
     <header class="section fixed-top">
-        <!-- header inner -->
+        <!-- bagian dalam header -->
         <div class="header_main">
             <div class="header_main">
                 <div class="container">
@@ -38,10 +39,10 @@
                                 <div class="limit-box">
                                     <nav class="main-menu">
                                         <ul class="menu-area-main">
-                                            <li> <a href="{{ url_for('index') }}">Home</a> </li>
-                                            <li><a href="{{ url_for('shop') }}">Shop</a></li>
-                                            <li><a href="{{ url_for('cart') }}">Cart</a></li>
-                                            <li class="last"><a href="#"><img src="{{ url_for('static', filename='user/images/search_icon.png') }}" alt="icon" /></a></li>
+                                            <li> <a href="{{ url_for('index') }}">Beranda</a> </li>
+                                            <li><a href="{{ url_for('shop') }}">Toko</a></li>
+                                            <li><a href="{{ url_for('cart') }}">Keranjang</a></li>
+                                            <li class="last"><a href="#"><img src="{{ url_for('static', filename='user/images/search_icon.png') }}" alt="ikon" /></a></li>
                                         </ul>
                                     </nav>
                                 </div>
@@ -51,13 +52,13 @@
                 </div>
             </div>
         </div>
-        <!-- end header inner -->
+        <!-- end bagian dalam header -->
     </header>
     <!-- end header -->
 
-    <!-- Shopping Cart Content -->
+    <!-- Konten Keranjang Belanja -->
     <div class="container mt-5 pt-5">
-        <h2 class="mb-4 text-center">Your Shopping Cart</h2>
+        <h2 class="mb-4 text-center">Keranjang Belanja Anda</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -69,25 +70,41 @@
             <tbody id="cart-items"></tbody>
         </table>
         <div id="cart-summary" class="text-center mt-4">
-            <p class="mb-2">Total Price: Rp.<span id="total-price">0.00</span></p>
-            <a class="btn btn-primary float-right" href="{{ url_for('shop') }}" style="white-space: nowrap;">Continue</a>
+            <p class="mb-2">Total Harga: Rp.<span id="total-price">0.00</span></p>
+            <a class="btn btn-primary float-right" href="{{ url_for('shop') }}" style="white-space: nowrap;">Lanjutkan</a>
         </div>
     </div>
 
-    <!-- Add your footer content here -->
+    <!-- Formulir Pembayaran -->
+    <div class="container mt-5">
+        <h2 class="mb-4 text-center">Detail Pembayaran</h2>
+        <form id="payment-form">
+            <div class="form-group">
+                <label for="card-element">Kartu kredit atau debit</label>
+                <div id="card-element">
+                    <!-- Elemen Stripe akan dimasukkan di sini. -->
+                </div>
+                <!-- Digunakan untuk menampilkan kesalahan formulir. -->
+                <div id="card-errors" role="alert"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Kirim Pembayaran</button>
+        </form>
+    </div>
+
+    <!-- Tambahkan konten footer Anda di sini -->
     <div class="footer layout_padding mt-auto">
         <div class="container">
-            <p>© 2019 All Rights Reserved. Design by <a href="https://html.design/">Free Html Templates</a></p>
+            <p>© semoga lancar kawan kawan <a href="https://html.design/">Free Html Templates</a></p>
         </div>
     </div>
 
-    <!-- Add your JavaScript files here -->
+    <!-- Tambahkan file JavaScript Anda di sini -->
     <script src="{{ url_for('static', filename='user/js/jquery.min.js') }}"></script>
     <script src="{{ url_for('static', filename='user/js/popper.min.js') }}"></script>
     <script src="{{ url_for('static', filename='user/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='user/js/jquery-3.0.0.min.js') }}"></script>
     <script src="{{ url_for('static', filename='user/js/plugin.js') }}"></script>
-    <!-- Add any additional scripts -->
+    <!-- Tambahkan skrip tambahan -->
 
     <style>
         #cart-items td,
@@ -113,7 +130,7 @@
     </style>
 
     <script>
-        // Your existing JavaScript code remains unchanged
+        // Kode JavaScript Anda yang ada tetap tidak berubah
         function addToCart(id, nama, harga) {
             $.ajax({
                 type: "POST",
@@ -121,11 +138,11 @@
                 contentType: "application/json",
                 data: JSON.stringify({ id: id, nama: nama, harga: harga }),
                 success: function(response) {
-                    alert("Product added to the cart!");
+                    alert("Produk ditambahkan ke keranjang!");
                     getCartItems();
                 },
                 error: function(error) {
-                    alert("Failed to add product to the cart.");
+                    alert("Gagal menambahkan produk ke keranjang.");
                 }
             });
         }
@@ -149,7 +166,7 @@
             cartItemsContainer.empty();
 
             if (cart.length === 0) {
-                cartItemsContainer.append("<tr><td colspan='3'>Your cart is empty.</td></tr>");
+                cartItemsContainer.append("<tr><td colspan='3'>Keranjang Anda kosong.</td></tr>");
             } else {
                 var totalPrice = 0;
 
@@ -163,16 +180,189 @@
                     totalPrice += item.harga * item.quantity;
                 });
 
-                // Display total price
+                // Tampilkan total harga
                 totalPriceElement.text(totalPrice.toFixed(2));
             }
         }
 
-        // Load cart items on page load
+        // Muat item keranjang saat halaman dimuat
         $(document).ready(function() {
             getCartItems();
         });
+
+        // Inisialisasi Stripe.js
+        var stripe = Stripe('KUNCI_PUBLISHABLE_ANDA');
+        var elements = stripe.elements();
+        var card = elements.create('card');
+        card.mount('#card-element');
+
+        card.addEventListener('change', function(event) {
+            var displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            stripe.createToken(card).then(function(result) {
+                if (result.error) {
+                    // Informasikan pelanggan bahwa ada kesalahan.
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Kirim token ke server Anda.
+                    stripeTokenHandler(result.token);
+                }
+            });
+        });
+
+        function stripeTokenHandler(token) {
+            var form = document.getElementById('payment-form');
+            var hiddenInput = document.createElement('input');
+            hiddenInput.setAttribute('type', 'hidden');
+            hiddenInput.setAttribute('name', 'stripeToken');
+            hiddenInput.setAttribute('value', token.id);
+            form.appendChild(hiddenInput);
+
+            // Kirim formulir
+            form.submit();
+        }
     </script>
 </body>
 
 </html>
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .header_main {
+        background-color: #343a40;
+        padding: 10px 0;
+    }
+
+    .logo a img {
+        max-width: 150px;
+    }
+
+    .main-menu ul {
+        display: flex;
+        justify-content: space-around;
+        list-style: none;
+        padding: 0;
+    }
+
+    .main-menu ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 10px 20px;
+    }
+
+    .main-menu ul li a:hover {
+        color: #007bff;
+    }
+
+    .container {
+        margin-top: 80px;
+    }
+
+    h2 {
+        color: #343a40;
+        margin-bottom: 30px;
+    }
+
+    .table {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .table th,
+    .table td {
+        vertical-align: middle;
+        text-align: center;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .footer {
+        background-color: #343a40;
+        color: #fff;
+        padding: 20px 0;
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+
+    #payment-form {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #343a40;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+    #card-element {
+        padding: 10px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        background-color: #f8f9fa;
+    }
+
+    #card-errors {
+        color: #dc3545;
+        margin-top: 10px;
+    }
+
+    .btn {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #0056b3;
+    }
+</style>
