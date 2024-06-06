@@ -112,7 +112,7 @@
                      <figure><img src="{{ url_for('image', barang_id=barang.id) }}" alt="{{ barang.nama }}"
                            style="height: 150px; width: 150px;" /></figure>
                   </figure>
-                  <h3> Rp<strong class="price_text">{{ barang.harga }}</strong></h3>
+                  <h3> Rp.<strong class="price_text">{{ barang.harga }}</strong></h3>
                   <h4>{{ barang.nama }}</h4>
                   <button class="btn btn-primary mt-2"
                      onclick="addToCart('{{ barang.id }}', '{{ barang.nama }}', '{{ barang.harga }}')">Cart</button>
