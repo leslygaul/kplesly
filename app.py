@@ -189,5 +189,22 @@ def image(barang_id):
         return send_file(BytesIO(barang.picture_data), mimetype=barang.picture_mime_type)
     return abort(404)
 
+@app.route('/process-payment', methods=['POST'])
+def process_payment():
+    data = request.get_json()
+    card_number = data['card_number']
+    expiry_date = data['expiry_date']
+    cvc = data['cvc']
+    amount = data['amount']
+
+    # Here, integrate with your payment gateway
+    # For demonstration, let's assume the payment is successful
+    payment_success = True
+
+    if payment_success:
+        return jsonify({"status": "success", "message": "Payment processed successfully"})
+    else:
+        return jsonify({"status": "failure", "message": "Payment failed"}), 400
+
 if __name__ == '__main__':
     app.run(debug=True)
